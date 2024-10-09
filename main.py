@@ -29,8 +29,17 @@ def display_results(query):
 def home():
     st.markdown("""
     # Freecall
-    Bem-vindo ao Freecall, a ferramenta que facilita o acompanhamento das suas atividades diárias. 
-    Capture e busque informações visuais de maneira eficiente e segura, sem comprometer a sua privacidade.
+    Bem-vindo ao Freecall, a solução inteligente para acompanhar suas atividades diárias de forma visual e segura.
+
+    Capture capturas de tela e busque informações de maneira eficiente, tudo rodando localmente para garantir sua privacidade.
+
+    Como usar o Freecall:
+
+    Capturar Screenshots: Ao clicar em "Capturar Tela", a ferramenta começa a tirar automaticamente capturas de tela, que são salvas na pasta "capture" dentro do diretório da aplicação.
+    Descrever Imagens: Quando terminar, basta clicar em "Descrever Imagens" para que elas sejam processadas por nosso modelo multimodal Minicpm-v, gerando descrições detalhadas de cada captura.
+    Pesquisar Histórico: Use o mecanismo de pesquisa para encontrar informações nos prints anteriores, utilizando apenas palavras-chave para localizar o que estava fazendo.
+
+    Com o Freecall, você tem um histórico visual completo de suas atividades, sem comprometer a privacidade.
     """)
 # Função para mostrar a página de busca
 def show_search():
