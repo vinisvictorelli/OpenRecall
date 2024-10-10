@@ -6,10 +6,10 @@ Freecall é tentativa de recriar as funcionalidades do software Recall apresenta
 
 ## Funcionalidades
 
-- **Captura de Tela Automática**: Tira capturas de tela periodicamente e as salva em uma pasta local.
+- **Captura de Tela Automática**: Tira capturas de tela usando uma ánalise dos pixels da tela do usuário e as salva em uma pasta local (pasta 'capture' que se encontra na raiz do projeto).
 - **Geração de Descrições de Imagens**: Utiliza o modelo **Minicpm-v** para criar descrições detalhadas de cada captura de tela.
 - **Pesquisa Eficiente**: Um mecanismo de busca que permite encontrar rapidamente imagens e suas descrições a partir das suas palavras.
-- **Privacidade Garantida**: Todo o processamento é feito localmente, sem necessidade de enviar dados para servidores externos.
+- **Privacidade**: Todo o processamento é feito localmente, sem necessidade de enviar dados para servidores externos.
 
 ## Como Usar
 
@@ -26,7 +26,7 @@ Use o mecanismo de pesquisa embutido para encontrar informações e imagens ante
 
 ### 1. Pré-requisitos
 
-- **Python 3.9** ou superior.
+- **Python 3.12** ou superior.
 - **Ollama** para o gerenciamento do modelo **Minicpm-v**.
 - **Streamlit** para rodar a aplicação web.
 
@@ -59,6 +59,11 @@ Execute a aplicação utilizando o Streamlit:
 ```bash
 streamlit run app.py
 ```
+
+### Próximos Passos
+Ainda há espaço para várias melhorias incluindo:
+- [ ] Rodar a aplicação inteiramente em um container Docker, facilitando a execução da mesma.
+- [ ] Melhorar a performance para descrever as imagens, **ainda extremamente lento**
 ### Contribuindo
 
 Sinta-se à vontade para abrir um pull request ou relatar problemas na seção Issues.
