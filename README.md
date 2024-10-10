@@ -1,6 +1,8 @@
 # Freecall
 
-Freecall é uma aplicação inteligente para captura de tela e geração de descrições, projetada para fornecer um histórico visual detalhado das suas atividades diárias, enquanto preserva sua privacidade ao rodar localmente. Esta aplicação utiliza o modelo multimodal **Minicpm-v** para gerar descrições de imagens capturadas automaticamente.
+Freecall é tentativa de recriar as funcionalidades do software Recall apresentadas pela Microsoft. Onde a ferramenta cria um histórico visual do usuário e permite através do uso de LLM's, a pesquisa por esse histórico usando uma descrição feita pelo próprio usuário. A grande diferença aqui é que o freecall roda inteiramente local, sem o risco de enviar suas informações para servidores externos.
+
+**DISCLAIMER: A ferramenta é apenas uma maneira que eu pensei para estudar mais sobre os usos que LLM's podem ter no nosso dia a dia. Então não é recomendável o uso dela como uma forma de backup para informações importantes**
 
 ## Funcionalidades
 
