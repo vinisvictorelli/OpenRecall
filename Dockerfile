@@ -1,23 +1,26 @@
-# For more information, please refer to https://aka.ms/vscode-docker-python
+# Usar uma imagem base oficial do Python
 FROM python:3.12-slim
 
-# Keeps Python from generating .pyc files in the container
-ENV PYTHONDONTWRITEBYTECODE=1
-
-# Turns off buffering for easier container logging
-ENV PYTHONUNBUFFERED=1
-
-# Install pip requirements
-COPY requirements.txt .
-RUN python -m pip install -r requirements.txt
-
+# Definir o diretório de trabalho dentro do contêiner
 WORKDIR /app
+
+# Copiar os arquivos necessários para o contêiner
 COPY . /app
 
-# Creates a non-root user with an explicit UID and adds permission to access the /app folder
-# For more info, please refer to https://aka.ms/vscode-docker-python-configure-containers
-RUN adduser -u 5678 --disabled-password --gecos "" appuser && chown -R appuser /app
-USER appuser
+# Atualizar o apt-get e instalar dependências do sistema
+RUN apt-get update && apt-get install -y \
+    curl \
+    wget \
+    && rm -rf /var/lib/apt/lists/*
 
-# During debugging, this entry point will be overridden. For more information, please refer to https://aka.ms/vscode-docker-python-debug
-CMD ["streamlit", "run","main.py"]
+# Instalar dependências Python, incluindo Streamlit
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Baixar o modelo minicpm-v para uso local
+RUN ollama serve & sleep 5 && ollama pull minicpm-v
+
+# Expor a porta padrão do Streamlit
+EXPOSE 8501
+
+# Definir o comando de entrada padrão para iniciar o Streamlit
+CMD ["streamlit", "run", "app.py", "--server.port=8501", "--server.enableCORS=false"]
