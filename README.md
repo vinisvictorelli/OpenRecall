@@ -36,3 +36,24 @@ Clone o repositório e instale as dependências do projeto.
 git clone https://github.com/usuario/freecall.git
 cd freecall
 pip install -r requirements.txt
+```
+### 3. Configurando o Ollama
+
+Certifique-se de ter o Ollama instalado corretamente. Caso não tenha, você pode instalar utilizando o comando abaixo:
+
+```bash
+curl -sSfL https://ollama.com/download.sh | sh
+```
+
+Após instalar o Ollama, baixe o modelo Minicpm-v:
+
+```bash
+ollama pull minicpm-v
+```
+
+### 4. Executando a Aplicação
+
+Execute a aplicação utilizando o Streamlit:
+```bash
+streamlit run app.py
+```
