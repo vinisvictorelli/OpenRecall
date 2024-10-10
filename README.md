@@ -6,7 +6,7 @@ Freecall é uma aplicação inteligente para captura de tela e geração de desc
 
 - **Captura de Tela Automática**: Tira capturas de tela periodicamente e as salva em uma pasta local.
 - **Geração de Descrições de Imagens**: Utiliza o modelo **Minicpm-v** para criar descrições detalhadas de cada captura de tela.
-- **Pesquisa Eficiente**: Um mecanismo de busca que permite encontrar rapidamente imagens e suas descrições a partir de palavras-chave.
+- **Pesquisa Eficiente**: Um mecanismo de busca que permite encontrar rapidamente imagens e suas descrições a partir das suas palavras.
 - **Privacidade Garantida**: Todo o processamento é feito localmente, sem necessidade de enviar dados para servidores externos.
 
 ## Como Usar
