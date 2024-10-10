@@ -57,3 +57,6 @@ Execute a aplicação utilizando o Streamlit:
 ```bash
 streamlit run app.py
 ```
+### Contribuindo
+
+Sinta-se à vontade para abrir um pull request ou relatar problemas na seção Issues.
