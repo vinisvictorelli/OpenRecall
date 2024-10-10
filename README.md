@@ -1,6 +1,6 @@
 # Freecall
 
-Freecall é tentativa de recriar as funcionalidades do software Recall apresentadas pela Microsoft. Onde a ferramenta cria um histórico visual do usuário e permite através do uso de LLM's, a pesquisa por esse histórico usando uma descrição feita pelo próprio usuário. A grande diferença aqui é que o freecall roda inteiramente local, sem o risco de enviar suas informações para servidores externos.
+Freecall é uma tentativa de recriar as funcionalidades do software Recall apresentado pela Microsoft. Onde a ferramenta cria um histórico visual do usuário e permite através do uso de LLM's, a pesquisa por esse histórico usando uma descrição feita pelo próprio usuário. A grande diferença é que o freecall roda inteiramente local, sem o risco de enviar suas informações para servidores externos.
 
 **DISCLAIMER: A ferramenta é apenas uma maneira que eu pensei para estudar mais sobre os usos que LLM's podem ter no nosso dia a dia. Então não é recomendável o uso dela como uma forma de backup para informações importantes**
 
