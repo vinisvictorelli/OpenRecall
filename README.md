@@ -1,69 +1,69 @@
 # Freecall
 
-Freecall é uma tentativa de recriar as funcionalidades do software Recall apresentado pela Microsoft. Onde a ferramenta cria um histórico visual do usuário e permite através do uso de LLM's, a pesquisa por esse histórico usando uma descrição feita pelo próprio usuário. A grande diferença é que o freecall roda inteiramente local, sem o risco de enviar suas informações para servidores externos.
+Freecall is an attempt to recreate the features of Microsoft's Recall software. This tool creates a visual history of the user's activity and allows searching through this history using a description provided by the user with the help of LLMs. The key difference is that Freecall runs entirely locally, eliminating the risk of sending your information to external servers.
 
-**DISCLAIMER: A ferramenta é apenas uma maneira que eu pensei para estudar mais sobre os usos que LLM's podem ter no nosso dia a dia. Então não é recomendável o uso dela como uma forma de backup para informações importantes**
+**DISCLAIMER: This tool is just a way I thought of to study more about the potential applications of LLMs in our daily lives. It is not recommended to use it as a backup solution for important information.**
 
-## Funcionalidades
+## Features
 
-- **Captura de Tela Automática**: Tira capturas de tela usando uma ánalise dos pixels da tela do usuário e as salva em uma pasta local (pasta 'capture' que se encontra na raiz do projeto).
-- **Geração de Descrições de Imagens**: Utiliza o modelo **Minicpm-v** para criar descrições detalhadas de cada captura de tela.
-- **Pesquisa Eficiente**: Um mecanismo de busca que permite encontrar rapidamente imagens e suas descrições a partir das suas palavras.
-- **Privacidade**: Todo o processamento é feito localmente, sem necessidade de enviar dados para servidores externos.
+- **Automatic Screenshot Capture**: Takes screenshots by analyzing the pixels on the user's screen and saves them in a local folder (`capture` folder located at the project's root).
+- **Image Description Generation**: Uses the **Minicpm-v** model to create detailed descriptions for each screenshot.
+- **Efficient Search**: A search engine that quickly finds images and their descriptions based on your words.
+- **Privacy**: All processing is done locally, with no need to send data to external servers.
 
-## Como Usar
+## How to Use
 
-### 1. Capturar Screenshots
-Ao clicar em "Capturar Tela", a ferramenta começa a tirar automaticamente capturas de tela, que são salvas na pasta `capture` dentro do diretório da aplicação.
+### 1. Capture Screenshots
+Click on "Capture Screen" to start taking screenshots automatically. These will be saved in the `capture` folder within the application's directory.
 
-### 2. Descrever Imagens
-Quando terminar de capturar, basta clicar em "Descrever Imagens" para que as capturas sejam processadas e descritas pelo modelo **Minicpm-v**.
+### 2. Describe Images
+After capturing screenshots, click on "Describe Images" to process and generate descriptions for them using the **Minicpm-v** model.
 
-### 3. Pesquisar Histórico
-Use o mecanismo de pesquisa embutido para encontrar informações e imagens anteriores utilizando suas próprias palavras.
+### 3. Search History
+Use the built-in search engine to find previous images and information using your own words.
 
-## Como Rodar o Projeto
+## Running the Project
 
-### 1. Pré-requisitos
+### 1. Prerequisites
 
-- **Python 3.12** ou superior.
-- **Ollama** para o gerenciamento do modelo **Minicpm-v**.
-- **Streamlit** para rodar a aplicação web.
+- **Python 3.12** or higher.
+- **Ollama** to manage the **Minicpm-v** model.
+- **Streamlit** to run the web application.
 
-### 2. Instalando as Dependências
+### 2. Installing Dependencies
 
-Clone o repositório e instale as dependências do projeto.
+Clone the repository and install the project dependencies.
 
 ```bash
 git clone https://github.com/usuario/freecall.git
 cd freecall
 pip install -r requirements.txt
 ```
-### 3. Configurando o Ollama
+### 3. Setting Up Ollama
 
-Certifique-se de ter o Ollama instalado corretamente. Caso não tenha, você pode instalar utilizando o comando abaixo:
+Make sure Ollama is properly installed. If not, you can install it using the command below:
 
 ```bash
 curl -sSfL https://ollama.com/download.sh | sh
 ```
 
-Após instalar o Ollama, baixe o modelo Minicpm-v:
+After installing Ollama, download the Minicpm-v model:
 
 ```bash
 ollama pull minicpm-v
 ```
 
-### 4. Executando a Aplicação
+### 4. Running the Application
 
-Execute a aplicação utilizando o Streamlit:
+Run the application using Streamlit:
 ```bash
 streamlit run app.py
 ```
 
-### Próximos Passos
-Ainda há espaço para várias melhorias incluindo:
-- [ ] Rodar a aplicação inteiramente em um container Docker, facilitando a execução da mesma.
-- [ ] Melhorar a performance para descrever as imagens, **ainda extremamente lento**
-### Contribuindo
+### Next Steps
+There is still room for several improvements, including:
+- [ ] Running the entire application in a Docker container for easier execution.
+- [ ] Improving the performance of image description, which is still **extremely slow.**
+### Contributing
 
-Sinta-se à vontade para abrir um pull request ou relatar problemas na seção Issues.
+Feel free to open a pull request or report issues in the Issues section.
