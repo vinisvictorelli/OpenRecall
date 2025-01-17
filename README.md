@@ -4,7 +4,9 @@
 
 <p align="center">
   <img src="https://img.shields.io/badge/License-GPL%20v3-yellow.svg" href="https://choosealicense.com/licenses/gpl-3.0/">
+  <img src="https://img.shields.io/github/downloads/vinisvictorelli/OpenRecall/total" alt="Total Downloads">
 </p>
+
 
 <h2 align="left"> OpenRecall 📸 </h2>
 
