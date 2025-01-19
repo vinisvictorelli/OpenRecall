@@ -23,10 +23,11 @@ def take_screenshot():
 def save_screenshot(screenshot):
     # Cria um nome de arquivo com data e hora
     filename = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S.png")
-    filepath = f"capture/{filename}"
+    filepath = f"openrecall/data/capture/{filename}"
     # Salva a imagem
     cv2.imwrite(filepath, screenshot)
-    print(f"Captura de tela salva: {filename}")
+    print(f"Screenshot saved as {filename}")
+    print()
 
 def compare_screenshots(prev_screenshot, curr_screenshot):
     # Converte para escala de cinza para comparação
@@ -42,7 +43,6 @@ def compare_screenshots(prev_screenshot, curr_screenshot):
 def main_screenshot_function():
     prev_screenshot = take_screenshot()
     save_screenshot(prev_screenshot)
-    print(f'Captura de tela salva')
     while True:
         time.sleep(3)
         curr_screenshot = take_screenshot()
@@ -50,6 +50,5 @@ def main_screenshot_function():
         print(f'Porcentagem de diferença: {diff}%')
         if diff > 5:
             save_screenshot(curr_screenshot)
-            print(f'Captura de tela salva')
             # Atualiza a captura de tela atual
             prev_screenshot = curr_screenshot

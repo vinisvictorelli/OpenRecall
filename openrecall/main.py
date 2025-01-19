@@ -15,14 +15,14 @@ class MainWindow(QMainWindow):
         self.setStyleSheet("background-color: #F4FAFF;")
 
         # Set the window icon to the logo
-        self.setWindowIcon(QIcon("src/imgs/logo.png"))
+        self.setWindowIcon(QIcon("openrecall/imgs/logo.png"))
 
         self.initUI()
 
     def initUI(self):
         # Logo
         logo_label = QLabel(self)
-        logo_pixmap = QPixmap("src/imgs/logo.png")
+        logo_pixmap = QPixmap("openrecall/imgs/logo.png")
         logo_label.setPixmap(logo_pixmap.scaled(100, 100, Qt.KeepAspectRatio, Qt.SmoothTransformation))
         logo_label.setAlignment(Qt.AlignCenter)
 

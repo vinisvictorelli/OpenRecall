@@ -1,0 +1,3 @@
+from openrecall.screenshot.capture_screenshot import main_screenshot_function
+
+main_screenshot_function()

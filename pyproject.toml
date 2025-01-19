@@ -1,6 +1,5 @@
 [project]
-name = "openrecall"
-package-mode = false
+name = "OpenRecall"
 version = "0.1.0"
 description = "An open source implementation of microsoft recall function running entirely locally"
 authors = [
@@ -8,7 +7,7 @@ authors = [
 ]
 license = {text = "GPLv3"}
 readme = "README.md"
-requires-python = ">=3.10,<4"
+requires-python = ">=3.12,<4"
 dependencies = [
     "aiofiles (==23.2.1)",
     "annotated-types (==0.7.0)",
