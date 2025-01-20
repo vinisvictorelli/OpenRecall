@@ -1,5 +1,5 @@
 <p align="center">
-  <img width="200" height="200" src="openrecall/imgs/logo.png">
+  <img width="200" height="200" src="src/imgs/logo.png">
 </p>
 
 <p align="center">
