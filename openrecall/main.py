@@ -1,51 +1,51 @@
 import sys
 from PyQt5.QtWidgets import (
     QApplication, QMainWindow, QLineEdit, QPushButton, QLabel, QHBoxLayout,
-    QVBoxLayout, QGridLayout, QWidget, QScrollArea, QFrame, QDialog
+    QVBoxLayout, QGridLayout, QWidget, QScrollArea, QFrame
 )
-from PyQt5.QtGui import QPixmap, QIcon, QFont, QPalette, QColor
+from PyQt5.QtGui import QPixmap, QIcon
 from PyQt5.QtCore import Qt, QPropertyAnimation, QEasingCurve
 
-class CreditsDialog(QDialog):
-    def __init__(self, parent=None):
-        super().__init__(parent)
+# Credits Dialog
+class CreditsDialog(QWidget):
+    def __init__(self):
+        super().__init__()
         self.setWindowTitle("Credits")
         self.setFixedSize(400, 300)
-        self.setStyleSheet("background-color: #F4FAFF; border-radius: 10px;")
-
+        self.setWindowIcon(QIcon("openrecall/imgs/logo.png"))
+        self.setObjectName("CreditsDialog")
         layout = QVBoxLayout(self)
 
         title_label = QLabel("OpenRecall - Credits", self)
-        title_label.setStyleSheet("font-size: 18px; font-weight: bold; color: #333;")
         title_label.setAlignment(Qt.AlignCenter)
+        title_label.setObjectName("title_label")
 
         credits_label = QLabel(
-            "Developed by:\nJohn Doe\nJane Smith\n\n" 
-            "Icons and Images:\nOpenRecall Team\n\n" 
-            "Special Thanks:\nCommunity Support", 
+            "Developed by: Vinicius Victorelli\n" 
+            "Logo: rawpixel.com\n" 
+            "Special Thanks: Community Support\n", 
             self
         )
-        credits_label.setStyleSheet("font-size: 14px; color: #555;")
         credits_label.setAlignment(Qt.AlignCenter)
         credits_label.setWordWrap(True)
+        credits_label.setObjectName("credits_label")
 
         close_button = QPushButton("Close", self)
         close_button.setFixedSize(100, 40)
-        close_button.setStyleSheet(
-            "background-color: #256ED1; color: white; border-radius: 10px;"
-        )
+        close_button.setObjectName("close_button")
         close_button.clicked.connect(self.close)
 
         layout.addWidget(title_label)
         layout.addWidget(credits_label)
         layout.addWidget(close_button, alignment=Qt.AlignCenter)
 
+# Main Window
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
+        self.credit_window = CreditsDialog()
         self.setWindowTitle("OpenRecall")
         self.setGeometry(50, 50, 1280, 720)
-        self.setStyleSheet("background-color: #F4FAFF;")
 
         # Set the window icon to the logo
         self.setWindowIcon(QIcon("openrecall/imgs/logo.png"))
@@ -58,20 +58,16 @@ class MainWindow(QMainWindow):
         # Sidebar
         self.sidebar = QWidget(self)
         self.sidebar.setFixedWidth(0)  # Initially hidden
-        self.sidebar.setStyleSheet("background-color: #5773A5;border-radius: 10px;")
+        self.sidebar.setObjectName("sidebar")
         self.sidebar_layout = QVBoxLayout(self.sidebar)
-
-        self.close_button = QPushButton("Close Sidebar", self.sidebar)
-        self.close_button.setFixedSize(180,40)
-        self.close_button.setStyleSheet("background-color:rgb(115, 139, 179); color: white; border-radius: 13px;")
 
         self.credits_button = QPushButton("Credits", self.sidebar)
         self.credits_button.setFixedSize(180, 40)
-        self.credits_button.setStyleSheet("background-color: rgb(115, 139, 179); color: white; border-radius: 13px;")
+        self.credits_button.setObjectName('credits_button')
 
-        self.settings_button = QPushButton('Settings',self.sidebar)
+        self.settings_button = QPushButton('Settings', self.sidebar)
         self.settings_button.setFixedSize(180, 40)
-        self.settings_button.setStyleSheet("background-color: rgb(115, 139, 179); color: white; border-radius: 13px;")
+        self.settings_button.setObjectName('settings_button')
 
         # Logo
         self.logo_label = QLabel(self)
@@ -80,46 +76,41 @@ class MainWindow(QMainWindow):
             self.logo_pixmap.scaled(100, 100, Qt.KeepAspectRatio, Qt.SmoothTransformation)
         )
         self.logo_label.setAlignment(Qt.AlignCenter)
+        self.logo_label.setObjectName('logo_label')
 
         # Buttons with Toggle Functionality
         self.screenshot_button = QPushButton("SCREENSHOT: ON", self)
         self.screenshot_button.setCheckable(True)
         self.screenshot_button.setFixedSize(150, 40)
-        self.screenshot_button.setStyleSheet(
-            "background-color: #4772AB; color: white; border-radius: 13px;"
-        )
+        self.screenshot_button.setObjectName('screenshot_button')
 
         self.description_button = QPushButton("DESCRIPTION: ON", self)
         self.description_button.setCheckable(True)
         self.description_button.setFixedSize(150, 40)
-        self.description_button.setStyleSheet(
-            "background-color: #256ED1; color: white; border-radius: 13px;"
-        )
+        self.description_button.setObjectName('description_button')
 
         # Search Bar
         self.search_bar = QLineEdit(self)
         self.search_bar.setPlaceholderText("Type your search here...")
-        self.search_bar.setStyleSheet(
-            "border: 2px solid #cfe2ff; border-radius: 20px; padding: 10px; font-size: 16px;color: #555;"
-        )
+        self.search_bar.setObjectName('search_bar')
 
         self.search_button = QPushButton(self)
-        self.search_button.setIcon(QIcon.fromTheme("search"))
         self.search_button.setFixedSize(40, 40)
-        self.search_button.setStyleSheet("background-color: #527fbf; border-radius: 13px;")
+        self.search_button.setObjectName('search_button')
 
         # Placeholder Message
         self.placeholder_message = QLabel("Search for something to see results here.", self)
         self.placeholder_message.setAlignment(Qt.AlignCenter)
-        self.placeholder_message.setStyleSheet("font-size: 16px; color: #555; padding: 20px;")
+        self.placeholder_message.setObjectName('placeholder_message')
 
         # Cards Area
         self.card_area = QScrollArea(self)
         self.card_area.setWidgetResizable(True)
-        self.card_area.setStyleSheet("background-color: #ffffff; border: none;")
         self.card_area.hide()
+        self.card_area.setObjectName('card_area')
 
         self.card_container = QWidget()
+        self.card_container.setObjectName('card_container')
         self.card_layout = QGridLayout(self.card_container)
         self.card_layout.setSpacing(10)
         self.card_area.setWidget(self.card_container)
@@ -127,12 +118,11 @@ class MainWindow(QMainWindow):
         # Toggle Sidebar Button
         self.sidebar_button = QPushButton("\u22ee", self)
         self.sidebar_button.setFixedSize(50, 50)
-        self.sidebar_button.setStyleSheet(
-            "background-color: #256ED1; color: white; border-radius: 15px; font-size: 18px;"
-        )
+        self.sidebar_button.setObjectName('sidebar_button')
 
         # Sidebar Animation
         self.sidebar_animation = QPropertyAnimation(self.sidebar, b"maximumWidth")
+        self.sidebar_animation.setObjectName('sidebar_animation')
         self.sidebar_animation.setDuration(300)
         self.sidebar_animation.setEasingCurve(QEasingCurve.InOutQuad)
 
@@ -143,14 +133,12 @@ class MainWindow(QMainWindow):
         # Sidebar Layout
         self.sidebar_layout.setAlignment(Qt.AlignTop)
         self.sidebar_layout.setSpacing(2)
-        
-        self.sidebar_layout.addWidget(self.close_button)
         self.sidebar_layout.addWidget(self.credits_button)
         self.sidebar_layout.addWidget(self.settings_button)
         
-
         # Button Layout
         button_layout = QHBoxLayout()
+        button_layout.setObjectName('button_layout')
         button_layout.setAlignment(Qt.AlignTop)
         button_layout.setSpacing(1)
         button_layout.addStretch(1)
@@ -160,6 +148,7 @@ class MainWindow(QMainWindow):
 
         # Search Layout
         search_layout = QHBoxLayout()
+        search_layout.setObjectName('search_layout')
         search_layout.addStretch(1)
         search_layout.addWidget(self.search_bar, stretch=5)
         search_layout.addWidget(self.search_button, stretch=1)
@@ -178,8 +167,9 @@ class MainWindow(QMainWindow):
         self.main_layout = QHBoxLayout(self.central_widget)
 
         self.central_area = QWidget(self)
-        self.central_area.setStyleSheet("background-color: #F4FAFF;")
+        self.central_area.setObjectName('central_area')
         self.central_layout = QVBoxLayout(self.central_area)
+        self.central_layout.setObjectName('central_layout')
 
         self.central_layout.addWidget(self.sidebar_button, alignment=Qt.AlignLeft)
         self.central_layout.addLayout(top_layout)
@@ -192,7 +182,6 @@ class MainWindow(QMainWindow):
         self.main_layout.addWidget(self.central_area)
 
         # Signal Connections
-        self.close_button.clicked.connect(self.toggle_sidebar)
         self.screenshot_button.clicked.connect(self.toggle_screenshot)
         self.description_button.clicked.connect(self.toggle_description)
         self.sidebar_button.clicked.connect(self.toggle_sidebar)
@@ -241,9 +230,7 @@ class MainWindow(QMainWindow):
 
     def create_card(self, title, description):
         card = QFrame(self)
-        card.setStyleSheet(
-            "background-color: #f9f9f9; border: 1px solid #dcdcdc; border-radius: 10px; padding: 10px;"
-        )
+        card.setObjectName('card')
         card_layout = QVBoxLayout(card)
 
         image_label = QLabel(self)
@@ -253,11 +240,11 @@ class MainWindow(QMainWindow):
         image_label.setAlignment(Qt.AlignCenter)
 
         title_label = QLabel(title, self)
-        title_label.setStyleSheet("font-weight: bold; font-size: 14px; color: #333;")
         title_label.setAlignment(Qt.AlignCenter)
+        title_label.setObjectName('title_label')
 
         description_label = QLabel(description, self)
-        description_label.setStyleSheet("font-size: 12px; color: #555;")
+        description_label.setObjectName('description_label')
         description_label.setWordWrap(True)
         description_label.setAlignment(Qt.AlignCenter)
 
@@ -268,10 +255,13 @@ class MainWindow(QMainWindow):
         return card
     
     def open_credits(self):
-        CreditsDialog.__init__(self)
+        self.credit_window.show()
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     window = MainWindow()
     window.show()
+    with open("openrecall/style.qss", "r") as f:
+        _style = f.read()
+        app.setStyleSheet(_style)
     sys.exit(app.exec_())

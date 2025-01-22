@@ -1,0 +1,123 @@
+/* Background color for the main window */
+QMainWindow {
+    background-color: #F4FAFF;
+}
+
+/* Style for the CreditsDialog */
+QWidget#CreditsDialog {
+    background-color: #F4FAFF;
+    border-radius: 10px;
+}
+
+QLabel#title_label {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+}
+
+QLabel#credits_label {
+    font-size: 14px;
+    color: #555;
+    text-align: center;
+}
+
+QPushButton#close_button {
+    background-color: #256ED1;
+    color: white;
+    border-radius: 10px;
+}
+
+/* Sidebar styles */
+QWidget#sidebar {
+    background-color: #5773A5;
+    border-radius: 10px;
+}
+
+QPushButton#credits_button, QPushButton#settings_button {
+    background-color: rgb(27, 96, 215);
+    color: white;
+    border-radius: 13px;
+}
+
+QPushButton#settings_button {
+    background-color: rgb(115, 139, 179);
+}
+
+/* Logo label */
+QLabel#logo_label {
+    text-align: center;
+}
+
+/* Buttons with toggle functionality */
+QPushButton#screenshot_button, QPushButton#description_button {
+    background-color: #4772AB;
+    color: white;
+    border-radius: 13px;
+}
+
+/* Specific colors for toggle buttons */
+QPushButton#description_button {
+    background-color: #256ED1;
+}
+
+/* Search bar and button */
+QLineEdit#search_bar {
+    background-color: #F4FAFF;
+    border: 2px solid #cfe2ff;
+    border-radius: 20px;
+    padding: 10px;
+    font-size: 16px;
+    color: #555;
+}
+
+QPushButton#search_button {
+    background-color: #527fbf;
+    border-radius: 13px;
+}
+
+/* Placeholder message */
+QLabel#placeholder_message {
+    font-size: 16px;
+    color: #555;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Cards area */
+QScrollArea#card_area {
+    background-color: #ffffff;
+    border: none;
+}
+
+QFrame#card {
+    background-color: #f9f9f9;
+    border: 1px solid #dcdcdc;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+QLabel#image_label {
+    text-align: center;
+}
+
+QLabel#title_label {
+    font-weight: bold;
+    font-size: 14px;
+    color: #333;
+    text-align: center;
+}
+
+QLabel#description_label {
+    font-size: 12px;
+    color: #555;
+    text-align: center;
+}
+
+/* Sidebar button */
+QPushButton#sidebar_button {
+    background-color: #256ED1;
+    color: white;
+    border-radius: 15px;
+    font-size: 18px;
+}
