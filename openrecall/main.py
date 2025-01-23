@@ -7,13 +7,13 @@ from PyQt5.QtGui import QPixmap, QIcon
 from PyQt5.QtCore import Qt, QPropertyAnimation, QEasingCurve
 
 # Credits Dialog
-class CreditsDialog(QWidget):
+class CreditsWindow(QWidget):
     def __init__(self):
         super().__init__()
         self.setWindowTitle("Credits")
         self.setFixedSize(400, 300)
         self.setWindowIcon(QIcon("openrecall/imgs/logo.png"))
-        self.setObjectName("CreditsDialog")
+        self.setObjectName("CreditsWindow")
         layout = QVBoxLayout(self)
 
         title_label = QLabel("OpenRecall - Credits", self)
@@ -39,11 +39,73 @@ class CreditsDialog(QWidget):
         layout.addWidget(credits_label)
         layout.addWidget(close_button, alignment=Qt.AlignCenter)
 
+#Settings Window
+class Settings(QWidget):
+    def __init__(self):
+        super().__init__()
+        self.setWindowTitle("Settings")
+        self.setFixedSize(400, 300)
+        self.setWindowIcon(QIcon("openrecall/imgs/logo.png"))
+        self.setObjectName("SettingsWindow")
+        layout = QVBoxLayout(self)
+        layout.setAlignment(Qt.AlignCenter)
+
+        title_label = QLabel("Settings", self)
+        title_label.setAlignment(Qt.AlignCenter)
+        title_label.setObjectName("title_label")
+
+        # Logo
+        self.logo_label = QLabel(self)
+        self.logo_pixmap = QPixmap("openrecall/imgs/logo.png")
+        self.logo_label.setPixmap(
+            self.logo_pixmap.scaled(50, 50, Qt.KeepAspectRatio, Qt.SmoothTransformation)
+        )
+        self.logo_label.setAlignment(Qt.AlignCenter)
+        self.logo_label.setObjectName('logo_label')
+
+
+        # Buttons with Toggle Functionality
+        self.screenshot_button = QPushButton("SCREENSHOT: ON", self)
+        self.screenshot_button.setCheckable(True)
+        self.screenshot_button.setFixedSize(150, 40)
+        self.screenshot_button.setObjectName('screenshot_button')
+
+        self.description_button = QPushButton("DESCRIPTION: ON", self)
+        self.description_button.setCheckable(True)
+        self.description_button.setFixedSize(150, 40)
+        self.description_button.setObjectName('description_button')
+
+        close_button = QPushButton("Close", self)
+        close_button.setFixedSize(100, 40)
+        close_button.setObjectName("close_button")
+        
+        layout.addWidget(title_label)
+        layout.addWidget(self.logo_label)
+        layout.addWidget(self.screenshot_button)
+        layout.addWidget(self.description_button)
+        layout.addWidget(close_button)
+        
+
+        #Signals
+        self.screenshot_button.clicked.connect(self.toggle_screenshot)
+        self.description_button.clicked.connect(self.toggle_description)
+        close_button.clicked.connect(self.close)
+    
+    def toggle_screenshot(self):
+        self.screenshot_button.setText(
+            "SCREENSHOT: OFF" if self.screenshot_button.text() == "SCREENSHOT: ON" else "SCREENSHOT: ON"
+        )
+
+    def toggle_description(self):
+        self.description_button.setText(
+            "DESCRIPTION: OFF" if self.description_button.text() == "DESCRIPTION: ON" else "DESCRIPTION: ON"
+        )
 # Main Window
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
-        self.credit_window = CreditsDialog()
+        self.credit_window = CreditsWindow()
+        self.settings_window = Settings()
         self.setWindowTitle("OpenRecall")
         self.setGeometry(50, 50, 1280, 720)
 
@@ -69,27 +131,6 @@ class MainWindow(QMainWindow):
         self.settings_button.setFixedSize(180, 40)
         self.settings_button.setObjectName('settings_button')
 
-
-
-        # Logo
-        self.logo_label = QLabel(self)
-        self.logo_pixmap = QPixmap("openrecall/imgs/logo.png")
-        self.logo_label.setPixmap(
-            self.logo_pixmap.scaled(100, 100, Qt.KeepAspectRatio, Qt.SmoothTransformation)
-        )
-        self.logo_label.setAlignment(Qt.AlignCenter)
-        self.logo_label.setObjectName('logo_label')
-
-        # Buttons with Toggle Functionality
-        self.screenshot_button = QPushButton("SCREENSHOT: ON", self)
-        self.screenshot_button.setCheckable(True)
-        self.screenshot_button.setFixedSize(150, 40)
-        self.screenshot_button.setObjectName('screenshot_button')
-
-        self.description_button = QPushButton("DESCRIPTION: ON", self)
-        self.description_button.setCheckable(True)
-        self.description_button.setFixedSize(150, 40)
-        self.description_button.setObjectName('description_button')
 
         # Search Bar
         self.search_bar = QLineEdit(self)
@@ -139,30 +180,15 @@ class MainWindow(QMainWindow):
         self.sidebar_layout.addWidget(self.credits_button)
         self.sidebar_layout.addWidget(self.settings_button)
         
-        # Button Layout
-        button_layout = QHBoxLayout()
-        button_layout.setObjectName('button_layout')
-        button_layout.setAlignment(Qt.AlignTop)
-        button_layout.setSpacing(1)
-        button_layout.addStretch(1)
-        button_layout.addWidget(self.screenshot_button)
-        button_layout.addWidget(self.description_button)
-        button_layout.addStretch(1)
-
         # Search Layout
         search_layout = QHBoxLayout()
+        search_layout.setAlignment(Qt.AlignCenter)
         search_layout.setObjectName('search_layout')
         search_layout.addStretch(1)
         search_layout.addWidget(self.search_bar, stretch=5)
         search_layout.addWidget(self.search_button, stretch=1)
         search_layout.addStretch(1)
 
-        # Top Layout
-        top_layout = QVBoxLayout()
-        top_layout.setAlignment(Qt.AlignTop)
-        top_layout.addWidget(self.logo_label, alignment=Qt.AlignCenter)
-        top_layout.addLayout(button_layout)
-        top_layout.addLayout(search_layout)
 
         # Central Layout
         self.central_widget = QWidget()
@@ -173,9 +199,11 @@ class MainWindow(QMainWindow):
         self.central_area.setObjectName('central_area')
         self.central_layout = QVBoxLayout(self.central_area)
         self.central_layout.setObjectName('central_layout')
+        self.central_layout.setAlignment(Qt.AlignTop)
 
         self.central_layout.addWidget(self.sidebar_button, alignment=Qt.AlignLeft)
-        self.central_layout.addLayout(top_layout)
+        self.central_layout.addLayout(search_layout)
+        self.central_layout.addSpacing(5)
         self.central_layout.addWidget(self.placeholder_message, alignment=Qt.AlignCenter)
         self.central_layout.addWidget(self.card_area)
 
@@ -185,11 +213,10 @@ class MainWindow(QMainWindow):
         self.main_layout.addWidget(self.central_area)
 
         # Signal Connections
-        self.screenshot_button.clicked.connect(self.toggle_screenshot)
-        self.description_button.clicked.connect(self.toggle_description)
         self.sidebar_button.clicked.connect(self.toggle_sidebar)
         self.search_button.clicked.connect(self.search_action)
         self.credits_button.clicked.connect(self.open_credits)
+        self.settings_button.clicked.connect(self.open_settings)
 
     def toggle_sidebar(self):
         if self.sidebar_open:
@@ -204,23 +231,12 @@ class MainWindow(QMainWindow):
         self.sidebar_animation.start()
         self.sidebar_open = not self.sidebar_open
 
-    def toggle_screenshot(self):
-        self.screenshot_button.setText(
-            "SCREENSHOT: OFF" if self.screenshot_button.text() == "SCREENSHOT: ON" else "SCREENSHOT: ON"
-        )
-
-    def toggle_description(self):
-        self.description_button.setText(
-            "DESCRIPTION: OFF" if self.description_button.text() == "DESCRIPTION: ON" else "DESCRIPTION: ON"
-        )
-
     def search_action(self):
         query = self.search_bar.text().strip()
         if not query:
             return
 
         self.placeholder_message.hide()
-        self.card_area.setObjectName('card_area')
         self.card_area.show()
 
         for i in reversed(range(self.card_layout.count())):
@@ -228,7 +244,7 @@ class MainWindow(QMainWindow):
             if widget:
                 widget.deleteLater()
 
-        for i in range(6):
+        for i in range(10):
             card = self.create_card(f"Result {i + 1}", f"Description for result {i + 1}.")
             self.card_layout.addWidget(card, i // 2, i % 2)
 
@@ -259,6 +275,9 @@ class MainWindow(QMainWindow):
     
     def open_credits(self):
         self.credit_window.show()
+
+    def open_settings(self):
+        self.settings_window.show()
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)

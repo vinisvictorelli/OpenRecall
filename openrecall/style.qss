@@ -4,15 +4,15 @@ QMainWindow {
 }
 
 /* Style for the CreditsDialog */
-QWidget#CreditsDialog {
+QWidget#CreditsWindow, QWidget#SettingsWindow {
     background-color: #F4FAFF;
     border-radius: 10px;
 }
 
 QLabel#title_label {
-    font-size: 18px;
+    font-size: 24px;
     font-weight: bold;
-    color: #333;
+    color: #555;
     text-align: center;
 }
 
@@ -35,13 +35,13 @@ QWidget#sidebar {
 }
 
 QPushButton#credits_button, QPushButton#settings_button {
-    background-color: #256ED1;
+    background-color: #527fbf;
     color: white;
     border-radius: 13px;
 }
 
 QPushButton#credits_button::hover, QPushButton#settings_button::hover,QPushButton#close_button::hover {
-    background-color:rgb(50, 102, 176);
+    background-color:rgb(85, 122, 173);
 }
 
 /* Logo label */
@@ -51,14 +51,13 @@ QLabel#logo_label {
 
 /* Buttons with toggle functionality */
 QPushButton#screenshot_button, QPushButton#description_button {
-    background-color: #4772AB;
+    background-color: #527fbf;
     color: white;
-    border-radius: 13px;
+    border-radius: 16px;
 }
 
-/* Specific colors for toggle buttons */
-QPushButton#description_button {
-    background-color: #256ED1;
+QPushButton#screenshot_button::hover, QPushButton#description_button::hover {
+    background-color: rgb(85, 122, 173);
 }
 
 /* Search bar and button */
@@ -75,6 +74,10 @@ QPushButton#search_button {
     background-color: #527fbf;
     color: white;
     border-radius: 13px;
+}
+
+QPushButton#search_button::hover,QPushButton#sidebar_button::hover {
+    background-color:rgb(85, 122, 173);
 }
 
 /* Placeholder message */
@@ -123,7 +126,7 @@ QLabel#description_label {
 
 /* Sidebar button */
 QPushButton#sidebar_button {
-    background-color: #256ED1;
+    background-color: #527fbf;
     color: white;
     border-radius: 15px;
     font-size: 18px;
