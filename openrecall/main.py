@@ -1,7 +1,7 @@
 import sys
 from PyQt5.QtWidgets import (
     QApplication, QMainWindow, QLineEdit, QPushButton, QLabel, QHBoxLayout,
-    QVBoxLayout, QGridLayout, QWidget, QScrollArea, QFrame
+    QVBoxLayout, QGridLayout, QWidget, QScrollArea, QFrame, QStackedWidget
 )
 from PyQt5.QtGui import QPixmap, QIcon
 from PyQt5.QtCore import Qt, QPropertyAnimation, QEasingCurve
@@ -69,6 +69,8 @@ class MainWindow(QMainWindow):
         self.settings_button.setFixedSize(180, 40)
         self.settings_button.setObjectName('settings_button')
 
+
+
         # Logo
         self.logo_label = QLabel(self)
         self.logo_pixmap = QPixmap("openrecall/imgs/logo.png")
@@ -95,6 +97,7 @@ class MainWindow(QMainWindow):
         self.search_bar.setObjectName('search_bar')
 
         self.search_button = QPushButton(self)
+        self.search_button.setIcon(QIcon.fromTheme("search"))
         self.search_button.setFixedSize(40, 40)
         self.search_button.setObjectName('search_button')
 
@@ -106,8 +109,8 @@ class MainWindow(QMainWindow):
         # Cards Area
         self.card_area = QScrollArea(self)
         self.card_area.setWidgetResizable(True)
-        self.card_area.hide()
         self.card_area.setObjectName('card_area')
+        self.card_area.hide()
 
         self.card_container = QWidget()
         self.card_container.setObjectName('card_container')
@@ -217,6 +220,7 @@ class MainWindow(QMainWindow):
             return
 
         self.placeholder_message.hide()
+        self.card_area.setObjectName('card_area')
         self.card_area.show()
 
         for i in reversed(range(self.card_layout.count())):
@@ -230,7 +234,6 @@ class MainWindow(QMainWindow):
 
     def create_card(self, title, description):
         card = QFrame(self)
-        card.setObjectName('card')
         card_layout = QVBoxLayout(card)
 
         image_label = QLabel(self)

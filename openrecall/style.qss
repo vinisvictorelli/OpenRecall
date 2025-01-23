@@ -35,13 +35,13 @@ QWidget#sidebar {
 }
 
 QPushButton#credits_button, QPushButton#settings_button {
-    background-color: rgb(27, 96, 215);
+    background-color: #256ED1;
     color: white;
     border-radius: 13px;
 }
 
-QPushButton#settings_button {
-    background-color: rgb(115, 139, 179);
+QPushButton#credits_button::hover, QPushButton#settings_button::hover,QPushButton#close_button::hover {
+    background-color:rgb(50, 102, 176);
 }
 
 /* Logo label */
@@ -73,6 +73,7 @@ QLineEdit#search_bar {
 
 QPushButton#search_button {
     background-color: #527fbf;
+    color: white;
     border-radius: 13px;
 }
 
@@ -84,9 +85,15 @@ QLabel#placeholder_message {
     text-align: center;
 }
 
+QWidget#card_container {
+    background-color:#ffffff;
+    border: none; 
+}
+
 /* Cards area */
 QScrollArea#card_area {
     background-color: #ffffff;
+    border-radius: 13px;
     border: none;
 }
 
