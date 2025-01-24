@@ -1,7 +1,8 @@
 import sys
+from os import listdir
 from PyQt5.QtWidgets import (
     QApplication, QMainWindow, QLineEdit, QPushButton, QLabel, QHBoxLayout,
-    QVBoxLayout, QGridLayout, QWidget, QScrollArea, QFrame, QStackedWidget
+    QVBoxLayout, QGridLayout, QWidget, QScrollArea, QFrame
 )
 from PyQt5.QtGui import QPixmap, QIcon
 from PyQt5.QtCore import Qt, QPropertyAnimation, QEasingCurve
@@ -50,10 +51,6 @@ class Settings(QWidget):
         layout = QVBoxLayout(self)
         layout.setAlignment(Qt.AlignCenter)
 
-        title_label = QLabel("Settings", self)
-        title_label.setAlignment(Qt.AlignCenter)
-        title_label.setObjectName("title_label")
-
         # Logo
         self.logo_label = QLabel(self)
         self.logo_pixmap = QPixmap("openrecall/imgs/logo.png")
@@ -63,32 +60,47 @@ class Settings(QWidget):
         self.logo_label.setAlignment(Qt.AlignCenter)
         self.logo_label.setObjectName('logo_label')
 
+        title_label = QLabel("Settings", self)
+        title_label.setAlignment(Qt.AlignCenter)
+        title_label.setObjectName("title_settings")
 
         # Buttons with Toggle Functionality
+        screenshot_layout = QHBoxLayout(self)
+        screenshot_layout.setAlignment(Qt.AlignCenter)
+        self.screenshot_label = QLabel('Activate auto screenshot',self)
+        self.screenshot_label.setObjectName('screenshot_label')
         self.screenshot_button = QPushButton("SCREENSHOT: ON", self)
         self.screenshot_button.setCheckable(True)
         self.screenshot_button.setFixedSize(150, 40)
         self.screenshot_button.setObjectName('screenshot_button')
+        screenshot_layout.addWidget(self.screenshot_label)
+        screenshot_layout.addWidget(self.screenshot_button)
 
-        self.description_button = QPushButton("DESCRIPTION: ON", self)
-        self.description_button.setCheckable(True)
+        # Option to choose de amount of images send to description
+        description_layout = QHBoxLayout(self)
+        description_layout.setAlignment(Qt.AlignCenter)
+        self.description_label = QLabel('Choose the amount of images to be sent to llm for description')
+        self.description_label.setObjectName('screenshot_label')
+        self.description_label.setWordWrap(True)
+        self.description_button = QLineEdit(self)
         self.description_button.setFixedSize(150, 40)
         self.description_button.setObjectName('description_button')
+        description_layout.addWidget(self.description_label)
+        description_layout.setSpacing(5)
+        description_layout.addWidget(self.description_button)
 
         close_button = QPushButton("Close", self)
         close_button.setFixedSize(100, 40)
         close_button.setObjectName("close_button")
         
-        layout.addWidget(title_label)
         layout.addWidget(self.logo_label)
-        layout.addWidget(self.screenshot_button)
-        layout.addWidget(self.description_button)
+        layout.addWidget(title_label)
+        layout.addLayout(screenshot_layout)
+        layout.addLayout(description_layout)
         layout.addWidget(close_button)
-        
 
         #Signals
         self.screenshot_button.clicked.connect(self.toggle_screenshot)
-        self.description_button.clicked.connect(self.toggle_description)
         close_button.clicked.connect(self.close)
     
     def toggle_screenshot(self):

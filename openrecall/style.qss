@@ -1,6 +1,7 @@
 /* Background color for the main window */
 QMainWindow {
     background-color: #F4FAFF;
+    font-family: Roboto;
 }
 
 /* Style for the CreditsDialog */
@@ -11,6 +12,13 @@ QWidget#CreditsWindow, QWidget#SettingsWindow {
 
 QLabel#title_label {
     font-size: 24px;
+    font-weight: bold;
+    color: #555;
+    text-align: center;
+}
+
+QLabel#title_settings {
+    font-size: 32px;
     font-weight: bold;
     color: #555;
     text-align: center;
@@ -50,7 +58,7 @@ QLabel#logo_label {
 }
 
 /* Buttons with toggle functionality */
-QPushButton#screenshot_button, QPushButton#description_button {
+QPushButton#screenshot_button, QLineEdit#description_button {
     background-color: #527fbf;
     color: white;
     border-radius: 16px;
@@ -111,7 +119,7 @@ QLabel#image_label {
     text-align: center;
 }
 
-QLabel#title_label {
+QLabel#title_label, QLabel#screenshot_label, QLabel#description_label {
     font-weight: bold;
     font-size: 14px;
     color: #333;
@@ -131,3 +139,4 @@ QPushButton#sidebar_button {
     border-radius: 15px;
     font-size: 18px;
 }
+
