@@ -5,7 +5,7 @@ QMainWindow {
 }
 
 /* Style for the CreditsDialog */
-QWidget#CreditsWindow, QWidget#SettingsWindow {
+QWidget#CreditsWindow, QWidget#SettingsWindow, QWidget#QuickStartWindow {
     background-color: #F4FAFF;
     border-radius: 10px;
 }

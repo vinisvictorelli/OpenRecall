@@ -6,6 +6,7 @@ from PyQt5.QtWidgets import (
 )
 from PyQt5.QtGui import QPixmap, QIcon
 from PyQt5.QtCore import Qt, QPropertyAnimation, QEasingCurve
+from PyQt5 import QtCore
 
 # Credits Dialog
 class CreditsWindow(QWidget):
@@ -22,8 +23,8 @@ class CreditsWindow(QWidget):
         title_label.setObjectName("title_label")
 
         credits_label = QLabel(
-            "Developed by: Vinicius Victorelli\n" 
-            "Logo: rawpixel.com\n" 
+            "Developed by: Vinicius Victorelli\n\n" 
+            "Logo: rawpixel.com\n\n" 
             "Special Thanks: Community Support\n", 
             self
         )
@@ -86,13 +87,12 @@ class Settings(QWidget):
         self.description_button.setFixedSize(150, 40)
         self.description_button.setObjectName('description_button')
         description_layout.addWidget(self.description_label)
-        description_layout.setSpacing(5)
         description_layout.addWidget(self.description_button)
 
         close_button = QPushButton("Close", self)
         close_button.setFixedSize(100, 40)
         close_button.setObjectName("close_button")
-        
+
         layout.addWidget(self.logo_label)
         layout.addWidget(title_label)
         layout.addLayout(screenshot_layout)
@@ -112,14 +112,29 @@ class Settings(QWidget):
         self.description_button.setText(
             "DESCRIPTION: OFF" if self.description_button.text() == "DESCRIPTION: ON" else "DESCRIPTION: ON"
         )
+
+class QuickStartWindow(QWidget):
+    def __init__(self):
+        super().__init__()
+        self.setWindowTitle("QuickStart")
+        self.setFixedSize(400, 300)
+        # Set the window icon to the logo
+        self.setWindowIcon(QIcon("openrecall/imgs/logo.png"))
+        self.setWindowFlags(QtCore.Qt.WindowStaysOnTopHint)
+        self.setObjectName('QuickStartWindow')
+        layout = QVBoxLayout(self)
+        layout.setAlignment(Qt.AlignCenter)
+
 # Main Window
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
+        self.quick_window = QuickStartWindow()
         self.credit_window = CreditsWindow()
         self.settings_window = Settings()
         self.setWindowTitle("OpenRecall")
         self.setGeometry(50, 50, 1280, 720)
+        self.quick_window.show()
 
         # Set the window icon to the logo
         self.setWindowIcon(QIcon("openrecall/imgs/logo.png"))
