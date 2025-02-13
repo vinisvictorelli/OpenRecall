@@ -2,7 +2,7 @@ import sys
 from os import listdir
 from PyQt5.QtWidgets import (
     QApplication, QMainWindow, QLineEdit, QPushButton, QLabel, QHBoxLayout,
-    QVBoxLayout, QGridLayout, QWidget, QScrollArea, QFrame
+    QVBoxLayout, QGridLayout, QWidget, QScrollArea, QFrame, QComboBox
 )
 from PyQt5.QtGui import QPixmap, QIcon
 from PyQt5.QtCore import Qt, QPropertyAnimation, QEasingCurve
@@ -40,7 +40,6 @@ class CreditsWindow(QWidget):
         layout.addWidget(title_label)
         layout.addWidget(credits_label)
         layout.addWidget(close_button, alignment=Qt.AlignCenter)
-
 #Settings Window
 class Settings(QWidget):
     def __init__(self):
@@ -122,8 +121,29 @@ class QuickStartWindow(QWidget):
         self.setWindowIcon(QIcon("openrecall/imgs/logo.png"))
         self.setWindowFlags(QtCore.Qt.WindowStaysOnTopHint)
         self.setObjectName('QuickStartWindow')
+        #Main Layout
         layout = QVBoxLayout(self)
         layout.setAlignment(Qt.AlignCenter)
+        #Title Layout
+        label_title = QLabel("Quick Start",self)
+        label_description = QLabel("Configure the essential settings required for the application to function properly.",self)
+        #Send description - AUTO OR MANUAL - Configuration Layout
+        layout_send_description = QHBoxLayout(self)
+        label_send_description = QLabel("Send images to generate AI descriptions",self)
+        self.selector_send_description = QComboBox()
+        self.selector_send_description.addItem("Automatic")
+        self.selector_send_description.addItem("Manual")
+        layout_send_description.addWidget(label_send_description)
+        layout_send_description.addWidget(self.selector_send_description)
+            
+        #Main Layout Configuration
+        layout.addWidget(label_title)
+        layout.addWidget(label_description)
+        layout.addLayout(layout_send_description)
+
+
+
+        
 
 # Main Window
 class MainWindow(QMainWindow):
@@ -310,7 +330,7 @@ if __name__ == "__main__":
     app = QApplication(sys.argv)
     window = MainWindow()
     window.show()
-    with open("openrecall/style.qss", "r") as f:
+    with open("openrecall/style.css", "r") as f:
         _style = f.read()
         app.setStyleSheet(_style)
     sys.exit(app.exec_())
