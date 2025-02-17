@@ -126,10 +126,16 @@ class QuickStartWindow(QWidget):
         layout.setAlignment(Qt.AlignCenter)
         #Title Layout
         label_title = QLabel("Quick Start",self)
-        label_description = QLabel("Configure the essential settings required for the application to function properly.",self)
+        label_title.setObjectName("label_title")
+        label_title.setAlignment(Qt.AlignCenter)
+        label_description = QLabel("Configure the essential settings required\n for the application to function properly.",self)
+        label_description.setObjectName("label_description")
+        label_description.setAlignment(Qt.AlignCenter)
         #Send description - AUTO OR MANUAL - Configuration Layout
         layout_send_description = QHBoxLayout(self)
+        layout_send_description.setAlignment(Qt.AlignCenter)
         label_send_description = QLabel("Send images to generate AI descriptions",self)
+        label_send_description.setAlignment(Qt.AlignCenter)
         self.selector_send_description = QComboBox()
         self.selector_send_description.addItem("Automatic")
         self.selector_send_description.addItem("Manual")

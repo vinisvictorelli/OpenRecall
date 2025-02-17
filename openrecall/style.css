@@ -1,21 +1,35 @@
 /* Background color for the main window */
 QMainWindow {
     background-color: #F4FAFF;
-    font-family: Roboto;
+}
+
+QLabel {
+  text-align: center;
 }
 
 /* Style for the CreditsDialog */
-QWidget#CreditsWindow , QWidget#SettingsWindow , QWidget#QuickStartWindow {
+QWidget#CreditsWindow,QWidget#SettingsWindow {
     background-color: #F4FAFF;
     border-radius: 10px;
     text-align: center;
 }
 
-QLabel#title_label , QLabel#label_description , QLabel#label_title {
+QWidget#QuickStartWindow {
+    background-color: #F4FAFF;
+    font-weight: bold;
+    font-size: 32px;
+}
+
+QLabel#title_label, QLabel#label_title {
     font-size: 32px;
     font-weight: bold;
     color: #555;
     text-align: center;
+}
+
+QLabel#label_description {
+    font-size: 16px;
+    text-align: center top;
 }
 
 QLabel#title_settings {
