@@ -45,15 +45,15 @@ class Settings(QWidget):
     def __init__(self):
         super().__init__()
         self.setWindowTitle("Settings")
-        self.setFixedSize(400, 300)
-        self.setWindowIcon(QIcon("openrecall/imgs/logo.png"))
+        self.setFixedSize(600, 400)
+        self.setWindowIcon(QIcon("openrecall/imgs/settings.png"))
         self.setObjectName("SettingsWindow")
         layout = QVBoxLayout(self)
         layout.setAlignment(Qt.AlignCenter)
 
         # Logo
         self.logo_label = QLabel(self)
-        self.logo_pixmap = QPixmap("openrecall/imgs/logo.png")
+        self.logo_pixmap = QPixmap("openrecall/imgs/settings.png")
         self.logo_label.setPixmap(
             self.logo_pixmap.scaled(50, 50, Qt.KeepAspectRatio, Qt.SmoothTransformation)
         )
@@ -116,14 +116,15 @@ class QuickStartWindow(QWidget):
     def __init__(self):
         super().__init__()
         self.setWindowTitle("QuickStart")
-        self.setFixedSize(400, 300)
+        self.setFixedSize(600, 350)
         # Set the window icon to the logo
-        self.setWindowIcon(QIcon("openrecall/imgs/logo.png"))
+        self.setWindowIcon(QIcon("openrecall/imgs/quickstart.png"))
         self.setWindowFlags(QtCore.Qt.WindowStaysOnTopHint)
         self.setObjectName('QuickStartWindow')
         #Main Layout
         layout = QVBoxLayout(self)
         layout.setAlignment(Qt.AlignCenter)
+        layout.setAlignment(Qt.AlignTop)
         #Title Layout
         label_title = QLabel("Quick Start",self)
         label_title.setObjectName("label_title")
@@ -135,21 +136,63 @@ class QuickStartWindow(QWidget):
         layout_send_description = QHBoxLayout(self)
         layout_send_description.setAlignment(Qt.AlignCenter)
         label_send_description = QLabel("Send images to generate AI descriptions",self)
+        label_send_description.setObjectName("label_send_description")
         label_send_description.setAlignment(Qt.AlignCenter)
         self.selector_send_description = QComboBox()
+        self.selector_send_description.setObjectName("selector_send_description")
         self.selector_send_description.addItem("Automatic")
         self.selector_send_description.addItem("Manual")
         layout_send_description.addWidget(label_send_description)
         layout_send_description.addWidget(self.selector_send_description)
+
+        #Model Selection - Select the model to be used
+        layout_model_selection = QHBoxLayout(self)
+        layout_model_selection.setAlignment(Qt.AlignCenter)
+        label_model_selection = QLabel("Select an LLM model to generate a detailed description",self)
+        label_model_selection.setObjectName("label_model_selection")
+        label_model_selection.setAlignment(Qt.AlignCenter)
+        selector_model_selection = QComboBox()
+        selector_model_selection.setObjectName("selector_model_selection")
+        selector_model_selection.addItem("minicpm-v")
+        selector_model_selection.addItem("other model")
+        layout_model_selection.addWidget(label_model_selection)
+        layout_model_selection.addWidget(selector_model_selection)
+
+        #Interval between Screenshot - 30 - 60 or AUTO
+        layout_interval_screenshot = QHBoxLayout(self)
+        layout_interval_screenshot.setAlignment(Qt.AlignCenter)
+        label_interval_screenshot = QLabel("Interval between screenshots before capturing a new one",self)
+        label_interval_screenshot.setObjectName("label_interval_screenshot")
+        label_interval_screenshot.setAlignment(Qt.AlignCenter)
+        selector_interval_screenshot = QComboBox()
+        selector_interval_screenshot.setObjectName("selector_interval_screenshot")
+        selector_interval_screenshot.addItem("AUTO")
+        selector_interval_screenshot.addItem("30s")
+        selector_interval_screenshot.addItem("60s")
+        layout_interval_screenshot.addWidget(label_interval_screenshot)
+        layout_interval_screenshot.addWidget(selector_interval_screenshot)
+
+        #Close button
+        layout_close_button = QHBoxLayout(self)
+        layout_close_button.setAlignment(Qt.AlignCenter)
+        close_button = QPushButton("Close", self)
+        close_button.setFixedSize(80, 40)
+        close_button.setObjectName("close_button")
+        close_button.clicked.connect(self.close)
+        apply_button = QPushButton("Apply", self)
+        apply_button.setFixedSize(80, 40)
+        apply_button.setObjectName("apply_button")
+        apply_button.clicked.connect(self.close)
+        layout_close_button.addWidget(close_button)
+        layout_close_button.addWidget(apply_button)
             
         #Main Layout Configuration
         layout.addWidget(label_title)
         layout.addWidget(label_description)
         layout.addLayout(layout_send_description)
-
-
-
-        
+        layout.addLayout(layout_model_selection)
+        layout.addLayout(layout_interval_screenshot)
+        layout.addLayout(layout_close_button)
 
 # Main Window
 class MainWindow(QMainWindow):
@@ -191,7 +234,7 @@ class MainWindow(QMainWindow):
         self.search_bar.setObjectName('search_bar')
 
         self.search_button = QPushButton(self)
-        self.search_button.setIcon(QIcon.fromTheme("search"))
+        self.search_button.setIcon(QIcon('openrecall/imgs/search.png'))
         self.search_button.setFixedSize(40, 40)
         self.search_button.setObjectName('search_button')
 

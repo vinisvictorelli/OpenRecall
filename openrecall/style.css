@@ -16,20 +16,36 @@ QWidget#CreditsWindow,QWidget#SettingsWindow {
 
 QWidget#QuickStartWindow {
     background-color: #F4FAFF;
+    text-align: top;
     font-weight: bold;
     font-size: 32px;
+}
+
+QComboBox#selector_send_description, QComboBox#selector_model_selection, QComboBox#selector_interval_screenshot {
+    color: #000000;
+}
+
+QIcon {
+    background-color: #F4FAFF;
 }
 
 QLabel#title_label, QLabel#label_title {
     font-size: 32px;
     font-weight: bold;
-    color: #555;
+    color: #000000;
     text-align: center;
 }
 
 QLabel#label_description {
+    font-size: 20px;
+    text-align: center top;
+    color: #2a2a2a;
+}
+
+QLabel#label_send_description, QLabel#label_model_selection, QLabel#label_interval_screenshot {
     font-size: 16px;
     text-align: center top;
+    color: #555;
 }
 
 QLabel#title_settings {
@@ -45,7 +61,7 @@ QLabel#credits_label {
     text-align: center;
 }
 
-QPushButton#close_button {
+QPushButton#close_button, QPushButton#apply_button {
     background-color: #256ED1;
     color: white;
     border-radius: 10px;
@@ -63,7 +79,7 @@ QPushButton#credits_button, QPushButton#settings_button {
     border-radius: 13px;
 }
 
-QPushButton#credits_button::hover, QPushButton#settings_button::hover,QPushButton#close_button::hover {
+QPushButton#credits_button:hover, QPushButton#settings_button:hover,QPushButton#close_button:hover {
     background-color:rgb(85, 122, 173);
 }
 
