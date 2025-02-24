@@ -1,0 +1,18 @@
+{
+    "general": {
+        "theme": "light"
+    },
+    "main_window": {
+        "width": 1280,
+        "height": 720
+    },
+    "credits_window": {
+        "width": 1280,
+        "height": 720
+    },
+    "settings": {
+        "model": "other model",
+        "interval_screenshot": "60s",
+        "send_description": "Automatic"
+    }
+}

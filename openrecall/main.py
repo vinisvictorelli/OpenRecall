@@ -7,6 +7,9 @@ from PyQt5.QtWidgets import (
 from PyQt5.QtGui import QPixmap, QIcon
 from PyQt5.QtCore import Qt, QPropertyAnimation, QEasingCurve
 from PyQt5 import QtCore
+from openrecall.config.config_loader import update_config,load_config
+
+CONFIG_FILE = "openrecall/config/config.json"
 
 # Credits Dialog
 class CreditsWindow(QWidget):
@@ -40,6 +43,7 @@ class CreditsWindow(QWidget):
         layout.addWidget(title_label)
         layout.addWidget(credits_label)
         layout.addWidget(close_button, alignment=Qt.AlignCenter)
+        
 #Settings Window
 class Settings(QWidget):
     def __init__(self):
@@ -138,12 +142,12 @@ class QuickStartWindow(QWidget):
         label_send_description = QLabel("Send images to generate AI descriptions",self)
         label_send_description.setObjectName("label_send_description")
         label_send_description.setAlignment(Qt.AlignCenter)
-        self.selector_send_description = QComboBox()
-        self.selector_send_description.setObjectName("selector_send_description")
-        self.selector_send_description.addItem("Automatic")
-        self.selector_send_description.addItem("Manual")
+        selector_send_description = QComboBox(self)
+        selector_send_description.setObjectName("selector_send_description")
+        selector_send_description.addItem("Automatic")
+        selector_send_description.addItem("Manual")
         layout_send_description.addWidget(label_send_description)
-        layout_send_description.addWidget(self.selector_send_description)
+        layout_send_description.addWidget(selector_send_description)
 
         #Model Selection - Select the model to be used
         layout_model_selection = QHBoxLayout(self)
@@ -151,7 +155,7 @@ class QuickStartWindow(QWidget):
         label_model_selection = QLabel("Select an LLM model to generate a detailed description",self)
         label_model_selection.setObjectName("label_model_selection")
         label_model_selection.setAlignment(Qt.AlignCenter)
-        selector_model_selection = QComboBox()
+        selector_model_selection = QComboBox(self)
         selector_model_selection.setObjectName("selector_model_selection")
         selector_model_selection.addItem("minicpm-v")
         selector_model_selection.addItem("other model")
@@ -182,7 +186,6 @@ class QuickStartWindow(QWidget):
         apply_button = QPushButton("Apply", self)
         apply_button.setFixedSize(80, 40)
         apply_button.setObjectName("apply_button")
-        apply_button.clicked.connect(self.close)
         layout_close_button.addWidget(close_button)
         layout_close_button.addWidget(apply_button)
             
@@ -193,6 +196,21 @@ class QuickStartWindow(QWidget):
         layout.addLayout(layout_model_selection)
         layout.addLayout(layout_interval_screenshot)
         layout.addLayout(layout_close_button)
+
+        #Action
+        apply_button.clicked.connect(lambda: self.apply_config(
+            selector_model_selection.currentText(),
+            selector_interval_screenshot.currentText(),
+            selector_send_description.currentText(),))
+    
+    def apply_config(self,selector_model_selection,selector_interval_screenshot,selector_send_description):
+        config = load_config()
+        update_config(config,
+            {"settings": 
+             {"model": selector_model_selection,
+              "interval_screenshot": selector_interval_screenshot,
+              "send_description": selector_send_description}}
+        )
 
 # Main Window
 class MainWindow(QMainWindow):
