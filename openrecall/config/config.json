@@ -13,6 +13,7 @@
     "settings": {
         "model": "Automatic",
         "interval_screenshot": "AUTO",
-        "send_description": "Manual"
+        "send_description": "Automatic",
+        "auto_screenshot": "OFF"
     }
 }

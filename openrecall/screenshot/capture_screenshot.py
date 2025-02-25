@@ -40,7 +40,7 @@ def compare_screenshots(prev_screenshot, curr_screenshot):
     return diff_percentage
 
 # Função principal
-def main_screenshot_function():
+def capture_screenshot_comparison():
     prev_screenshot = take_screenshot()
     save_screenshot(prev_screenshot)
     while True:
@@ -52,3 +52,15 @@ def main_screenshot_function():
             save_screenshot(curr_screenshot)
             # Atualiza a captura de tela atual
             prev_screenshot = curr_screenshot
+
+# Nova função para capturar capturas de tela em um intervalo especificado
+def capture_screenshots_interval(interval_seconds):
+    while True:
+        screenshot = take_screenshot()
+        save_screenshot(screenshot)
+        time.sleep(interval_seconds)
+
+# Exemplo de uso da nova função
+if __name__ == "__main__":
+    capture_interval = 10  # Intervalo em segundos
+    capture_screenshots_interval(capture_interval)

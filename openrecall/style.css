@@ -21,7 +21,7 @@ QWidget#QuickStartWindow {
     font-size: 32px;
 }
 
-QComboBox#selector_send_description, QComboBox#selector_model_selection, QComboBox#selector_interval_screenshot {
+QComboBox#selector_send_description, QComboBox#selector_model_selection, QComboBox#selector_interval_screenshot, QComboBox#selector_interval_screenshot, QComboBox#selector_auto_screenshot {
     color: #000000;
 }
 
@@ -37,7 +37,7 @@ QLabel#title_label, QLabel#label_title {
 }
 
 QLabel#credits_label {
-    font-size: 20px;
+    font-size: 16px;
     color: #555;
     text-align: center;
 }
@@ -48,7 +48,7 @@ QLabel#label_description {
     color: #2a2a2a;
 }
 
-QLabel#label_send_description, QLabel#label_model_selection, QLabel#label_interval_screenshot {
+QLabel#label_send_description, QLabel#label_model_selection, QLabel#label_interval_screenshot, QLabel#label_auto_screenshot {
     font-size: 16px;
     text-align: center top;
     color: #555;
