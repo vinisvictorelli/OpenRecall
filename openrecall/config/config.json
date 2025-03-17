@@ -14,6 +14,6 @@
         "model": "Automatic",
         "interval_screenshot": "AUTO",
         "send_description": "Automatic",
-        "auto_screenshot": "OFF"
+        "auto_screenshot": "ON"
     }
 }

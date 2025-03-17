@@ -2,10 +2,15 @@ from PIL import Image
 import ollama
 import os
 import pandas as pd
+from openrecall.config.config_loader import load_config
+import json
+
+CONFIG = "openrecall/config/config.json"
+config = load_config()
 
 # Gera a descrição das imagens usando o modelo minicpm-v
 # Você pode verificar os outros modelos da ollama no link: https://ollama.com/library
-def generate_description(instruction, file_path):
+def generate_description(instruction, file_path): 
     result = ollama.generate(
         model='minicpm-v',
         prompt=instruction,
@@ -15,7 +20,7 @@ def generate_description(instruction, file_path):
     
     return result
 
-instruction = "A partir da imagem, extraia o que o USUÁRIO está fazendo com o máximo de informações que você puder obter, incluindo URL, se aplicável."
+instruction = "A partir da imagem, extraia o que o USUÁRIO está fazendo com o máximo de informações que você puder obter"
 file_path = 'capture'
 
 def create_database():
@@ -39,10 +44,10 @@ def create_database():
                 'filepath': [f'{file_path}/{file}'],
                 'description': [generate_description(instruction, f'{file_path}/{file}')]
             })
-            print(f'Novo arquivo criado com descrição')
+            print(f'New File created with description')
             print(new_data)
             data = pd.concat([data, new_data], ignore_index=True)
-    print('Concluído')
+    print('Finished')
 
     # Salva os dados no formato Parquet
     data.to_parquet(parquet_file_path)
@@ -51,3 +56,6 @@ def debug():
     # Debuga o código e ver se os dados estão sendo carregados de maneira correta
     data = pd.read_parquet('../data/data.parquet')
     print(data)
+
+if __name__ == '__main__':
+    create_database()
